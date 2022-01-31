@@ -1885,13 +1885,21 @@ class MyListWithCustomOperators {
   operator fun component3() = list.get(2)
 
   operator fun invoke(s: String) = list.add(s)
+
+  override fun equals(other: Any?): Boolean = TODO()
+  override fun hashCode(): Int = TODO()
+  operator fun compareTo(anotherList: MyListWithCustomOperators): Int = TODO()
 }
 
 fun customOperatorsUsage() {
   val list = MyListWithCustomOperators()
+  val anotherList = MyListWithCustomOperators()
 
   list += "foo"
   list += "bar"
+
+  val b1 = list == anotherList
+  val b2 = list > anotherList
 
   val u = "foo" in list
 
