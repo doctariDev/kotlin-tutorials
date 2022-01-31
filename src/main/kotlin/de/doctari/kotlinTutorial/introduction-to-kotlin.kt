@@ -1105,6 +1105,8 @@ class MyMapK<K,V>(private val backingMap: Map<K,V>) : Map<K, V> by backingMap {
  *
  * ⬤ type checks and implicit type casts (smart casts)
  *
+ * ⬤ enum classes
+ *
  * **************************************************************************************
  * ************************************************************************************** */
 
@@ -1325,6 +1327,52 @@ fun eval(expr: Expr): Double = when(expr) {
   is Div      -> eval(expr.e1) / eval(expr.e2)
   // the `else` clause is not required because we've covered all the cases of a sealed class
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+enum class State {
+  IDLE, RUNNING, FINISHED
+}
+
+val state = State.RUNNING
+
+val s9 = when (state) {
+  State.IDLE -> "not started yet"
+  State.RUNNING -> "we are running"
+  State.FINISHED -> "already finished"
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
