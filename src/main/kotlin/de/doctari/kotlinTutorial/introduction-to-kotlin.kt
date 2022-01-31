@@ -1174,10 +1174,10 @@ fun validateAgeInputK1(age: String): ResultK1<Int> = try {
 fun resultUsageK1(): Any {
   val (age, error) = validateAgeInputK1("84")
 
-  if (error != null) {
-    return TODO("do something with $error")
+  return if (error != null) {
+    TODO("do something with $error")
   } else {
-    return TODO("do something with $age")
+    TODO("do something with $age")
   }
 }
 
