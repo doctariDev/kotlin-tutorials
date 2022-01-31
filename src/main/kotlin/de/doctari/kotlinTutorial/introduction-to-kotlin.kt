@@ -1,7 +1,7 @@
 @file:Suppress("unused", "UNUSED_PARAMETER", "RedundantNullableReturnType", "MayBeConstant", "FunctionName",
   "UNREACHABLE_CODE", "UnnecessaryVariable", "ClassName", "ClassName", "MemberVisibilityCanBePrivate",
   "ReplaceJavaStaticMethodWithKotlinAnalog", "UNUSED_VARIABLE", "DuplicatedCode", "DuplicatedCode",
-  "RemoveToStringInStringTemplate"
+  "RemoveToStringInStringTemplate", "RemoveRedundantQualifierName"
 )
 
 package de.doctari.kotlinTutorial
@@ -1946,6 +1946,8 @@ fun idiomaticUsageOfMapOperators() {
  *
  * ⬤ declaration-site variance
  *
+ * ⬤ Unit can instantiate a type parameter T
+ *
  * **************************************************************************************
  * ************************************************************************************** */
 
@@ -2020,6 +2022,68 @@ val c: Consumer<String> = Consumer<Any>()
 
 
 
+
+
+
+
+
+
+
+
+interface Callback<in A, out R> {
+  fun call(arg: A): R
+}
+
+fun <A,R> invokeDelayed(delayMs: Long, arg: A, callback: Callback<A,R>): R {
+  Thread.sleep(delayMs)
+
+  return callback.call(arg)
+}
+
+
+val r7 = invokeDelayed(1000, "foo", object : Callback<String, String> {
+  override fun call(arg: String): String {
+    return arg + arg
+  }
+})
+
+
+@Java_esque
+val r8 = invokeDelayed(1000, "foo", object : Callback<String, java.lang.Void?> {
+  override fun call(arg: String): java.lang.Void? {
+    print(arg)
+    return null
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@Kotlin_esque
+val r9 = invokeDelayed(1000, "foo", object : Callback<String, Unit> {
+  override fun call(arg: String) {
+    print(arg)
+  }
+})
 
 
 
