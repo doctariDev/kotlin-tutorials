@@ -129,6 +129,7 @@ val impossible: Nothing = throw Error()
  *   ᐅ normal arguments
  *   ᐅ named arguments
  *   ᐅ default argument values
+ *   ᐅ vararg arguments
  *   ᐅ local variables
  *   ᐅ return types
  *   ᐅ no return type/value (you use Unit type; usually implicitly)
@@ -238,6 +239,43 @@ fun printTruncated_1(s: String) {
 
 @Kotlin_esque
 fun printTruncated_2(s: String) = print(truncate_3(s, maxLength = 10, suffix = "..."))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fun printAllWithPrefix(vararg messages: String, prefix: String) {
+  for (m in messages) println(prefix + m)
+}
+
+
+
+val unit6 = printAllWithPrefix(
+  "Hello", "Hallo", "Salut", "Hola", "你好",
+  prefix = "Greeting: "
+)
+
+
+
 
 
 
@@ -2041,7 +2079,7 @@ fun <A,R> invokeDelayed(delayMs: Long, arg: A, callback: Callback<A,R>): R {
 }
 
 
-val r7 = invokeDelayed(1000, "foo", object : Callback<String, String> {
+val string7 = invokeDelayed(1000, "foo", object : Callback<String, String> {
   override fun call(arg: String): String {
     return arg + arg
   }
@@ -2049,7 +2087,7 @@ val r7 = invokeDelayed(1000, "foo", object : Callback<String, String> {
 
 
 @Java_esque
-val r8 = invokeDelayed(1000, "foo", object : Callback<String, java.lang.Void?> {
+val unit8 = invokeDelayed(1000, "foo", object : Callback<String, java.lang.Void?> {
   override fun call(arg: String): java.lang.Void? {
     print(arg)
     return null
@@ -2079,7 +2117,7 @@ val r8 = invokeDelayed(1000, "foo", object : Callback<String, java.lang.Void?> {
 
 
 @Kotlin_esque
-val r9 = invokeDelayed(1000, "foo", object : Callback<String, Unit> {
+val unit9 = invokeDelayed(1000, "foo", object : Callback<String, Unit> {
   override fun call(arg: String) {
     print(arg)
   }
