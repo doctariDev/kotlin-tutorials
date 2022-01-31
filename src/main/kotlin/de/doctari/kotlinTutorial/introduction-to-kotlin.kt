@@ -129,7 +129,7 @@ val impossible: Nothing = throw Error()
  *   ᐅ normal arguments
  *   ᐅ named arguments
  *   ᐅ default argument values
- *   ᐅ vararg arguments
+ *   ᐅ vararg arguments (and spread operator)
  *   ᐅ local variables
  *   ᐅ return types
  *   ᐅ no return type/value (you use Unit type; usually implicitly)
@@ -270,10 +270,14 @@ fun printAllWithPrefix(vararg messages: String, prefix: String) {
 
 
 val unit6 = printAllWithPrefix(
-  "Hello", "Hallo", "Salut", "Hola", "你好",
+  "Hello", "Hallo", "Salut", "Hola", "Selam",
   prefix = "Greeting: "
 )
 
+
+
+val names = arrayOf("Peter", "Clark", "Tony", "Bruce")
+val unit7 = printAllWithPrefix(*names, prefix = "Greetings: ")
 
 
 
