@@ -127,8 +127,8 @@ annotation class Kotlin_esque
  * **************************************************************************************
  *
  * ⬤ variables
- *   ᐅ var / val
  *   ᐅ top-level variables (package properties)
+ *   ᐅ var / val
  *   ᐅ const variables
  *
  * ⬤ types
@@ -174,7 +174,7 @@ val impossible: Nothing = throw Error()
 
 
 val unit1 = Unit.also {
-  print("Foreshadowing also scoping function")
+  print("Foreshadowing the 'also' scoping function")
   print("I can execute any code here")
   print("...but what the hell is also exactly? See section about also for more details.")
 }
@@ -488,7 +488,7 @@ fun printUserAddressOptional(userName: String): Unit {
 
 @Kotlin_esque
 fun printUserAddress_1(userName: String) {
-  val user = getUserByName(userName) ?: throw IllegalArgumentException()
+  val user = getUserByName(userName) ?: throw IllegalStateException("User $userName not found")
 
   print("User $userName's address is ${user.address}")
 }
@@ -594,7 +594,7 @@ var parsedNumberOrFallback_1 = "500".toIntOrNull() ?: 0
  *   ᐅ class declarations / instantiation
  *   ᐅ primary constructor
  *   ᐅ secondary constructors
- *   ᐅ visibility
+ *   ᐅ visibility (public by default)
  *   ᐅ member functions
  *   ᐅ default constructor argument values
  *   ᐅ named constructor arguments
@@ -603,8 +603,9 @@ var parsedNumberOrFallback_1 = "500".toIntOrNull() ?: 0
  * ⬤ properties:
  *   ᐅ val / var
  *   ᐅ simple / computed
+ *   ᐅ visibility (public by default)
  *
- * ⬤ visibility modifiers: private, protected, public, internal
+ * ⬤ visibility modifiers: private, protected, public, internal (no package private)
  *
  * **************************************************************************************
  * ************************************************************************************** */
