@@ -85,7 +85,7 @@ annotation class Kotlin_esque
  *   ᐅ Any, Any?, Unit, Nothing
  *   ᐅ nullable types
  *
- * ⬤ top-level code not allowed (like in JS)
+ * ⬤ top-level code (like in JS) is not allowed in Kotlin
  *
  * **************************************************************************************
  * ************************************************************************************** */
@@ -101,6 +101,34 @@ val someObjectOrNull: Any? = someObject
 
 val noValue: Unit = Unit
 val impossible: Nothing = throw Error()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+val unit1 = Unit.also {
+  print("Foreshadowing also scoping function")
+  print("I can execute any code here")
+  print("...but what the hell is also exactly? See section about also for more details.")
+}
+
 
 
 
@@ -2789,7 +2817,7 @@ See section about type-safe builder pattern for more complex example usage of ap
  *
  * ⬤ let
  *    ᐅ limit the scope of local variables
- *    ᐅ null-safe apply functions on nullable objects
+ *    ᐅ null-safe scoping on nullable variables
  *    ᐅ convert objects to a different type
  *
  * ⬤ See also
@@ -2841,7 +2869,7 @@ fun exampleWithoutLet1() {
 @Kotlin_esque
 fun exampleWithLet1() {
   // limit the scope of local variables
-  // null-safe apply functions on nullable objects
+  // null-safe scoping on nullable expressions
 
   getUserByName("jacob")?.let {
     print(it.name)
@@ -2871,16 +2899,24 @@ fun exampleWithLet1() {
 
 
 
+interface Rating
+interface Bonus
 
+fun getUserRating(user: User): Rating = TODO()
+fun getRatingBonus(rating: Rating): Bonus = TODO()
 
-fun getRating(user: User): Int = TODO()
 
 @Java_esque
 fun exampleWithoutLet2() {
   val jacob = getUserByName("jacob")
-
   val jacobsAddress: AddressK? = jacob?.address
-  val jacobsRating: Int? = if (jacob == null) null else getRating(jacob)
+
+  val jacobsRating: Rating? = if (jacob == null) null else getUserRating(jacob)
+  val jacobsBonus: Bonus? = if (jacobsRating == null) null else getRatingBonus(jacobsRating)
+
+  if (jacobsBonus != null) {
+    print("Jacob lives in $jacobsAddress and his bonus is $jacobsBonus")
+  }
 }
 
 
@@ -2909,13 +2945,95 @@ fun exampleWithoutLet2() {
 
 @Kotlin_esque
 fun exampleWithLet2() {
-  // convert objects to a different type
-
   val jacob = getUserByName("jacob")
+  val jacobsAddress = jacob?.address
 
-  val jacobsAddress: AddressK? = jacob?.address
-  val jacobsRating: Int? = jacob?.let { getRating(it) }
+  // use let to convert objects to a different type
+
+  val jacobsRating = jacob?.let { getUserRating(it) }
+  val jacobsBonus = jacobsRating?.let { getRatingBonus(it) }
+
+  jacobsBonus?.let {
+    print("Jacob lives in $jacobsAddress and his bonus is $jacobsBonus")
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@Kotlin_esque
+fun exampleWithLet3() {
+  val jacob = getUserByName("jacob")
+  val jacobsAddress = jacob?.address
+
+  // let can be chained very conveniently, too
+
+  jacob?.let { getUserRating(it) }?.let { getRatingBonus(it) }?.let { bonus ->
+    print("Jacob lives in $jacobsAddress and his bonus is $bonus")
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+val User.rating get() = getUserRating(this)
+val Rating.bonus get() = getRatingBonus(this)
+
+@Kotlin_esque
+fun exampleOfAlternativeToLetChaining() {
+  val jacob = getUserByName("jacob")
+  val jacobsAddress = jacob?.address
+
+  // idiomatic alternative to let-chaining (but not necessarily worth the additional extension functions)
+
+  jacob?.rating?.bonus?.let { bonus ->
+    print("Jacob lives in $jacobsAddress and his bonus is $bonus")
+  }
+}
+
+
+
+
+
+
 
 
 
@@ -3027,6 +3145,7 @@ fun exampleWithWith(s: String): String = with(complexService) {
  * ⬤ run
  *    ᐅ similar to with, but different signature
  *    ᐅ limit the scope of multiple local variables
+ *    ᐅ initialize properties without constructor code
  *
  * **************************************************************************************
  * ************************************************************************************** */
@@ -3100,6 +3219,34 @@ fun exampleWithRun2() {
 
 
 
+class ExampleOfPropertyInitializationWithRun {
+  val user: User? = run {
+    val id: Long = TODO("Complex logic that determines the user id")
+    getUserById1(id)
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3109,6 +3256,7 @@ fun exampleWithRun2() {
  *
  * ⬤ also
  *    ᐅ execute side effects on an object without changing it, and then return it
+ *    ᐅ allows validating constructor arguments without constructor code
  *
  * **************************************************************************************
  * ************************************************************************************** */
@@ -3122,6 +3270,40 @@ fun exampleWithAlso() = StringBuilder().apply {
 }.also {
   print("Initialized string $it")
 }.toString()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class ExampleOfConstructorArgumentValidationWithAlso(number: Int) {
+  val number: Int = number.also {
+    if (it < 0 || it > 100) {
+      throw IllegalArgumentException("Number is out of range $it")
+    }
+  }
+}
 
 
 
