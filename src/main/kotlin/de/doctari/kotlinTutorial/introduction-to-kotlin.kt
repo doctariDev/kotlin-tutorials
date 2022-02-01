@@ -32,6 +32,56 @@ import kotlin.reflect.KProperty
 
 
 
+
+
+
+/*
+                                  Introduction to
+
+
+      __    __                          __            __        __
+     /  |  /  |                        /  |          /  |      /  |
+     $$ | /$$/         ______         _$$ |_         $$ |      $$/        _______
+     $$ |/$$/         /      \       / $$   |        $$ |      /  |      /       \
+     $$  $$<         /$$$$$$  |      $$$$$$/         $$ |      $$ |      $$$$$$$  |
+     $$$$$  \        $$ |  $$ |        $$ | __       $$ |      $$ |      $$ |  $$ |
+     $$ |$$  \       $$ \__$$ |        $$ |/  |      $$ |      $$ |      $$ |  $$ |
+     $$ | $$  |      $$    $$/         $$  $$/       $$ |      $$ |      $$ |  $$ |
+     $$/   $$/        $$$$$$/           $$$$/        $$/       $$/       $$/   $$/
+
+
+
+
+
+In this session we will learn how to write Kotlin code in an idiomatic way. This session is
+assuming Java developers wanting to learn Kotlin, but no Java Background is necessary to follow
+it. During the session, we will see Kotlin code examples that are written in the way that a
+Java developer would write them, and transform them to idiomatic Kotlin code while introducing
+concepts and language features that are new to Java developers.
+
+This is the first in a series of sessions about Kotlin.
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * Marks code that is written in a Java-esque way.
  *
@@ -3537,4 +3587,52 @@ class SelectDropdownK(val paramName: String) {
 class OptionK(val value: String, val label: String) {
   var isSelected = false
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* **************************************************************************************
+ * **************************************************************************************
+ *
+ * ⬤ Potential follow-up sessions
+ *    ᐅ Interoperability with Java
+ *    ᐅ Interoperability with Javascript
+ *    ᐅ Serialization with kotlinx-serialization
+ *    ᐅ Concurrency with kotlinx-coroutines
+ *
+ * **************************************************************************************
+ * ************************************************************************************** */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
