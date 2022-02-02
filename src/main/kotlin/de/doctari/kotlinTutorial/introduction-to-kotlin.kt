@@ -60,7 +60,11 @@ Java developer would write them, and transform them to idiomatic Kotlin code whi
 concepts and language features that are new to Java developers.
 
 This is the first in a series of sessions about Kotlin.
+
+A video recording of a training session for this Kotlin Introduction can be found in our
+confluence "Learning" page.
 */
+
 
 
 
