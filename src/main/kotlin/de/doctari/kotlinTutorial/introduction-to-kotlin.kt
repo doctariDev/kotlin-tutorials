@@ -53,11 +53,14 @@ import kotlin.reflect.KProperty
 
 
 
-In this session we will learn how to write Kotlin code in an idiomatic way. This session is
-assuming Java developers wanting to learn Kotlin, but no Java Background is necessary to follow
-it. During the session, we will see Kotlin code examples that are written in the way that a
-Java developer would write them, and transform them to idiomatic Kotlin code while introducing
-concepts and language features that are new to Java developers.
+In this session we will learn how to write Kotlin code in an idiomatic way.
+
+This session is assuming prior knowledge and experience with another object oriented
+language, preferably a statically typed one, but not necessarily Java.
+
+During the session, we will see Kotlin code examples that are written in a "Java-esque"
+way, and transform them to idiomatic Kotlin code while introducing concepts and language
+features that are new to Java developers.
 
 This is the first in a series of sessions about Kotlin.
 
