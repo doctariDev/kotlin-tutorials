@@ -11,6 +11,8 @@ import de.doctari.kotlinTutorial.SelectDropdownJ.*
 import java.awt.Button
 import java.awt.event.ActionEvent
 import java.awt.event.ActionListener
+import java.io.BufferedReader
+import java.io.File
 import java.lang.IllegalArgumentException
 import java.lang.IllegalStateException
 import java.util.HashSet
@@ -2444,6 +2446,7 @@ fun usageOfGetFilteredValues_k1() {
  *
  * ⬤ inline functions
  *    ᐅ return-transparency in inlined lambdas
+ *    ᐅ Example API that simulates Java's try-with-resources statement
  *    ᐅ reified generics in inlined functions
  *
  * **************************************************************************************
@@ -2544,6 +2547,86 @@ fun moveIntoHome(userName: String, home: AddressK): Boolean {
 
   return true
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@Java_esque
+fun exampleTryFinallyClose(args: Array<String>) {
+  var reader: BufferedReader? = null
+  try {
+    reader = File("file.txt").bufferedReader()
+
+    println(reader.readText())
+  } finally {
+    reader?.close()
+  }
+}
+
+// in modern Java you would actually use the try-with-resources statement
+// but there is no such syntax in Kotlin. In Kotlin the same functionality
+// is provided as an API in the Kotlin stdlib (see next).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// The use function will automatically close its receiver,
+// which needs to be a Closeable. It is defined as an inline
+// function to  provide benefits like return transparency
+// within the provided lambda block.
+//
+// See the use function's implementation for details.
+
+@Kotlin_esque
+fun exampleUse(args: Array<String>) {
+  File("file.txt").bufferedReader().use {
+    println(it.readText())
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
