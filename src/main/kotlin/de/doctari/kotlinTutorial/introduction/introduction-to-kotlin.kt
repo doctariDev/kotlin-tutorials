@@ -4,10 +4,10 @@
   "RemoveToStringInStringTemplate", "RemoveRedundantQualifierName"
 )
 
-package de.doctari.kotlinTutorial
+package de.doctari.kotlinTutorial.introduction
 
 import com.google.gson.Gson
-import de.doctari.kotlinTutorial.SelectDropdownJ.*
+import de.doctari.kotlinTutorial.introduction.SelectDropdownJ.*
 import java.awt.Button
 import java.awt.event.ActionEvent
 import java.awt.event.ActionListener
