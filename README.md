@@ -5,6 +5,8 @@ Video recordings of training sessions for these tutorials can be found in our co
 - Introduction to Kotlin: [src/main/kotlin/de/doctari/kotlinTutorial/introduction/introduction-to-kotlin.kt](https://github.com/doctariDev/kotlin-tutorials/blob/main/src/main/kotlin/de/doctari/kotlinTutorial/introduction/introduction-to-kotlin.kt).
 
 - Introduction to basic and advanced features of kotlinx-serialization library: [src/main/kotlin/de/doctari/kotlinTutorial/kotlinxSerialization/](https://github.com/doctariDev/kotlin-tutorials/blob/main/src/main/kotlin/de/doctari/kotlinTutorial/kotlinxSerialization/).
+
+- Context Receivers: [src/main/kotlin/de/doctari/kotlinTutorial/contextReceivers/](https://github.com/doctariDev/kotlin-tutorials/blob/main/src/main/kotlin/de/doctari/kotlinTutorial/contextReceivers/).
   
 
 
