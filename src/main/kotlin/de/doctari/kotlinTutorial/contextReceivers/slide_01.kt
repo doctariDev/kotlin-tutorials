@@ -53,7 +53,7 @@ fun main() {
   with(person) {
     // provides dispatch receiver implicitly:
     println(name)
-    println(person.age)
+    println(age)
     println(greet())
   }
 }
